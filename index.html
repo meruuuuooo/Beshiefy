@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="bessy.png" type="image/png">
+
+  <title>Bessify</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="input-group">
+      <label for="topTextField">Enter Text:</label>
+      <input type="text" id="topTextField" name="topTextField" oninput="playAudio()">
+    </div>
+
+    <button class="replace-button" type="button" onclick="replaceText()">Replace</button>
+
+    <div class="input-group">
+      <input type="text" id="bottomTextField" name="bottomTextField">
+    </div>
+
+    <button class="copy-button" type="button" onclick="copyText()">Copy</button>
+
+    <div class="alert-message" id="alertMessage"></div>
+
+    <audio id="backgroundAudio" autoplay loop>
+        <source src="bessifyAudio.mp3">
+        Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function replaceText() {
+      var topTextValue = document.getElementById("topTextField").value;
+      var replacedText = topTextValue.replace(/ /g, "🤸");
+      document.getElementById("bottomTextField").value = replacedText;
+    }
+
+    function copyText() {
+      var copyText = document.getElementById("bottomTextField");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      var alertMessage = document.getElementById("alertMessage");
+      alert("Copied to clipboard: " + copyText.value);
+    }
+
+    function playAudio() {
+      var audio = document.getElementById("backgroundAudio");
+      audio.play();
+    }
+  </script>
+</body>
+</html>
