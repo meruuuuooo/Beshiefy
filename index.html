@@ -45,6 +45,9 @@
       document.execCommand("copy");
       var alertMessage = document.getElementById("alertMessage");
       alert("Copied to clipboard: " + copyText.value);
+
+      var audio = document.getElementById("backgroundAudio");
+      audio.pause();
     }
 
     function playAudio() {
